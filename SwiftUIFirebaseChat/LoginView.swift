@@ -3,7 +3,7 @@
 //  SwiftUIFirebaseChat
 //
 //  Created by Jeremy Poh on 2023-08-31.
-//
+//  Test commit
 
 import SwiftUI
 import Firebase
