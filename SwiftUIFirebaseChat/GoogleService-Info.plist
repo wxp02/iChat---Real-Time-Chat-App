@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>531780277277-q1fttmmrpppba1cp89kq7em3j7udtdl3.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.531780277277-q1fttmmrpppba1cp89kq7em3j7udtdl3</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAN52lqYanVC07QOsNjd2i5duIs50Pikiw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>531780277277</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>co.wenxu.SwiftUIFirebaseChat</string>
+	<key>PROJECT_ID</key>
+	<string>swiftui-firebase-chat-9e773</string>
+	<key>STORAGE_BUCKET</key>
+	<string>swiftui-firebase-chat-9e773.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:531780277277:ios:dc7c66de060066193162f4</string>
+</dict>
+</plist>
