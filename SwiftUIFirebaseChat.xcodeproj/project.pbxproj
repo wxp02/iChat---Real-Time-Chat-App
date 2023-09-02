@@ -7,16 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD3ACB5F2AA288B000EAA21F /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD3ACB5E2AA288B000EAA21F /* ImagePicker.swift */; };
+		CD3ACB622AA290D200EAA21F /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = CD3ACB612AA290D200EAA21F /* FirebaseAuth */; };
+		CD3ACB642AA290D200EAA21F /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CD3ACB632AA290D200EAA21F /* FirebaseFirestore */; };
+		CD3ACB662AA290D200EAA21F /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = CD3ACB652AA290D200EAA21F /* FirebaseStorage */; };
 		CD57716B2AA13252006111CF /* SwiftUIFirebaseChatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD57716A2AA13252006111CF /* SwiftUIFirebaseChatApp.swift */; };
 		CD57716D2AA13252006111CF /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD57716C2AA13252006111CF /* LoginView.swift */; };
 		CD57716F2AA13254006111CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD57716E2AA13254006111CF /* Assets.xcassets */; };
 		CD5771722AA13254006111CF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD5771712AA13254006111CF /* Preview Assets.xcassets */; };
-		CD57717A2AA14809006111CF /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = CD5771792AA14809006111CF /* FirebaseAuth */; };
-		CD57717C2AA14809006111CF /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = CD57717B2AA14809006111CF /* FirebaseStorage */; };
 		CD57717E2AA1497A006111CF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CD57717D2AA1497A006111CF /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CD3ACB5E2AA288B000EAA21F /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		CD5771672AA13252006111CF /* SwiftUIFirebaseChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUIFirebaseChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD57716A2AA13252006111CF /* SwiftUIFirebaseChatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIFirebaseChatApp.swift; sourceTree = "<group>"; };
 		CD57716C2AA13252006111CF /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -30,8 +33,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD57717A2AA14809006111CF /* FirebaseAuth in Frameworks */,
-				CD57717C2AA14809006111CF /* FirebaseStorage in Frameworks */,
+				CD3ACB622AA290D200EAA21F /* FirebaseAuth in Frameworks */,
+				CD3ACB642AA290D200EAA21F /* FirebaseFirestore in Frameworks */,
+				CD3ACB662AA290D200EAA21F /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +63,7 @@
 			children = (
 				CD57716A2AA13252006111CF /* SwiftUIFirebaseChatApp.swift */,
 				CD57716C2AA13252006111CF /* LoginView.swift */,
+				CD3ACB5E2AA288B000EAA21F /* ImagePicker.swift */,
 				CD57717D2AA1497A006111CF /* GoogleService-Info.plist */,
 				CD57716E2AA13254006111CF /* Assets.xcassets */,
 				CD5771702AA13254006111CF /* Preview Content */,
@@ -91,8 +96,9 @@
 			);
 			name = SwiftUIFirebaseChat;
 			packageProductDependencies = (
-				CD5771792AA14809006111CF /* FirebaseAuth */,
-				CD57717B2AA14809006111CF /* FirebaseStorage */,
+				CD3ACB612AA290D200EAA21F /* FirebaseAuth */,
+				CD3ACB632AA290D200EAA21F /* FirebaseFirestore */,
+				CD3ACB652AA290D200EAA21F /* FirebaseStorage */,
 			);
 			productName = SwiftUIFirebaseChat;
 			productReference = CD5771672AA13252006111CF /* SwiftUIFirebaseChat.app */;
@@ -123,7 +129,7 @@
 			);
 			mainGroup = CD57715E2AA13252006111CF;
 			packageReferences = (
-				CD5771782AA14809006111CF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				CD3ACB602AA290D200EAA21F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = CD5771682AA13252006111CF /* Products */;
 			projectDirPath = "";
@@ -152,6 +158,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD3ACB5F2AA288B000EAA21F /* ImagePicker.swift in Sources */,
 				CD57716D2AA13252006111CF /* LoginView.swift in Sources */,
 				CD57716B2AA13252006111CF /* SwiftUIFirebaseChatApp.swift in Sources */,
 			);
@@ -354,7 +361,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		CD5771782AA14809006111CF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		CD3ACB602AA290D200EAA21F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
@@ -365,14 +372,19 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		CD5771792AA14809006111CF /* FirebaseAuth */ = {
+		CD3ACB612AA290D200EAA21F /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CD5771782AA14809006111CF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = CD3ACB602AA290D200EAA21F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
 		};
-		CD57717B2AA14809006111CF /* FirebaseStorage */ = {
+		CD3ACB632AA290D200EAA21F /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CD5771782AA14809006111CF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = CD3ACB602AA290D200EAA21F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		CD3ACB652AA290D200EAA21F /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CD3ACB602AA290D200EAA21F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
 		};
 /* End XCSwiftPackageProductDependency section */
