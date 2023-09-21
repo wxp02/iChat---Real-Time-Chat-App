@@ -19,6 +19,7 @@
 		CD5771722AA13254006111CF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CD5771712AA13254006111CF /* Preview Assets.xcassets */; };
 		CD57717E2AA1497A006111CF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CD57717D2AA1497A006111CF /* GoogleService-Info.plist */; };
 		CD7886752AA5580100AF4E93 /* MainMessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7886742AA5580100AF4E93 /* MainMessagesView.swift */; };
+		CDA70D922ABBEA620014361C /* CreateNewMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA70D912ABBEA620014361C /* CreateNewMessageView.swift */; };
 		CDC9946B2AAEA38B0051EEEB /* ChatUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC9946A2AAEA38B0051EEEB /* ChatUser.swift */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +33,7 @@
 		CD5771712AA13254006111CF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CD57717D2AA1497A006111CF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CD7886742AA5580100AF4E93 /* MainMessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMessagesView.swift; sourceTree = "<group>"; };
+		CDA70D912ABBEA620014361C /* CreateNewMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewMessageView.swift; sourceTree = "<group>"; };
 		CDC9946A2AAEA38B0051EEEB /* ChatUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -101,9 +103,18 @@
 		CD7886732AA557EF00AF4E93 /* MainMessages */ = {
 			isa = PBXGroup;
 			children = (
+				CDA70D902ABBEA3D0014361C /* NewMessage */,
 				CD7886742AA5580100AF4E93 /* MainMessagesView.swift */,
 			);
 			path = MainMessages;
+			sourceTree = "<group>";
+		};
+		CDA70D902ABBEA3D0014361C /* NewMessage */ = {
+			isa = PBXGroup;
+			children = (
+				CDA70D912ABBEA620014361C /* CreateNewMessageView.swift */,
+			);
+			path = NewMessage;
 			sourceTree = "<group>";
 		};
 		CDC994692AAEA3650051EEEB /* Model */ = {
@@ -199,6 +210,7 @@
 				CD3ACB5F2AA288B000EAA21F /* ImagePicker.swift in Sources */,
 				CD7886752AA5580100AF4E93 /* MainMessagesView.swift in Sources */,
 				CD0FD36E2AAD0702001A62E8 /* FirebaseManager.swift in Sources */,
+				CDA70D922ABBEA620014361C /* CreateNewMessageView.swift in Sources */,
 				CD57716D2AA13252006111CF /* LoginView.swift in Sources */,
 				CD57716B2AA13252006111CF /* SwiftUIFirebaseChatApp.swift in Sources */,
 			);
