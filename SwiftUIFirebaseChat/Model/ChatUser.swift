@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct ChatUser: Identifiable {
+struct ChatUser: Decodable, Identifiable {
     
     var id: String { uid }
     

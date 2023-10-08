@@ -16,7 +16,7 @@ class ChatLogViewModel: ObservableObject {
     
     @Published var chatMessages = [ChatMessage]()
     
-    let chatUser: ChatUser?
+    var chatUser: ChatUser?
     
     init(chatUser: ChatUser?) {
         self.chatUser = chatUser
@@ -24,11 +24,14 @@ class ChatLogViewModel: ObservableObject {
         fetchMessages()
     }
     
-    private func fetchMessages() {
+    var firestoreListener: ListenerRegistration?
+    
+    func fetchMessages() {
         guard let fromId = FirebaseManager.shared.auth.currentUser?.uid else { return }
-        
         guard let toId = chatUser?.uid else { return }
-        FirebaseManager.shared.firestore
+        firestoreListener?.remove()
+        chatMessages.removeAll()
+        firestoreListener = FirebaseManager.shared.firestore
             .collection("messages")
             .document(fromId)
             .collection(toId)
@@ -44,8 +47,10 @@ class ChatLogViewModel: ObservableObject {
                     if change.type == .added {
                         let data = change.document.data()
                         self.chatMessages.append(.init(documentId: change.document.documentID, data: data))
+                        print("Appending chatMessage in ChatLogView: \(Date())")
                     }
                 })
+                
                 // When I click on 'New Message' to a user this auto
                 // scrolls the messages to the bottom
                 DispatchQueue.main.async {
@@ -159,13 +164,6 @@ class ChatLogViewModel: ObservableObject {
 }
 
 struct ChatLogView: View {
-    
-    let chatUser: ChatUser?
-    
-    init (chatUser: ChatUser?) {
-        self.chatUser = chatUser
-        self.vm = .init(chatUser: chatUser)
-    }
         
     @ObservedObject var vm: ChatLogViewModel
 
@@ -174,7 +172,11 @@ struct ChatLogView: View {
             messagesView
             Text(vm.errorMessage)
         }
-        .navigationTitle(chatUser?.email ?? "") .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle(vm.chatUser?.email ?? "") .navigationBarTitleDisplayMode(.inline)
+        .navigationBarTitleDisplayMode(.inline)
+        .onDisappear {
+            vm.firestoreListener?.remove()
+        }
     }
     
     static let emptyScrollToString = "Empty"

@@ -15,6 +15,7 @@ class MainMessagesViewModel : ObservableObject {
     
     @Published var errorMessage = ""
     @Published var chatUser: ChatUser?
+    @Published var isUserCurrentlyLoggedOut = false
     
     init() {
         DispatchQueue.main.async {
@@ -27,14 +28,19 @@ class MainMessagesViewModel : ObservableObject {
     
     @Published var recentMessages = [RecentMessage]()
     
-    private func fetchRecentMessages() {
+    private var firestoreListener: ListenerRegistration?
+    
+    func fetchRecentMessages() {
         guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
         
-        FirebaseManager.shared.firestore
-            .collection("recent_messages")
+        firestoreListener?.remove()
+        self.recentMessages.removeAll()
+                
+        firestoreListener = FirebaseManager.shared.firestore
+            .collection(FirebaseConstants.recentMessages)
             .document(uid)
-            .collection("messages")
-            .order(by: "timestamp")
+            .collection(FirebaseConstants.messages)
+            .order(by: FirebaseConstants.timestamp)
             .addSnapshotListener { querySnapshot, error in
                 if let error = error {
                     self.errorMessage = "Failed to listen for recent messages: \(error)"
@@ -64,9 +70,7 @@ class MainMessagesViewModel : ObservableObject {
     }
     
     func fetchCurrentUser() {
-        guard let uid =
-            FirebaseManager.shared.auth.currentUser?.uid
-            else {
+        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else {
             self.errorMessage = "Could not find firebase uid"
             return
         }
@@ -79,32 +83,29 @@ class MainMessagesViewModel : ObservableObject {
                 return
             }
                 
-            guard let data = snapshot?.data() else {
-                self.errorMessage = "No data found"
-                return
-            }
-            
-            self.chatUser = .init(data: data)
+            self.chatUser = try? snapshot?.data(as: ChatUser.self)
+            FirebaseManager.shared.currentUser = self.chatUser
         }
     }
-    
-    @Published var isUserCurrentlyLoggedOut = false
     
     func handleSignOut() {
         isUserCurrentlyLoggedOut.toggle()
         try? FirebaseManager.shared.auth.signOut()
     }
+    
 }
 
 struct MainMessagesView: View {
     
     @State var shouldShowLogOutOptions = false
     
-    @ State var shouldNavigateToChatLogView = false
+    @State var shouldNavigateToChatLogView = false
     
     // Private var cannot be accessed from outside that scope,
     // even within the same module.
     @ObservedObject private var vm = MainMessagesViewModel()
+    
+    private var chatLogViewModel = ChatLogViewModel(chatUser: nil)
     
     var body: some View {
         NavigationView {
@@ -113,7 +114,7 @@ struct MainMessagesView: View {
                 messagesView
                 
                 NavigationLink("", isActive: $shouldNavigateToChatLogView) {
-                    ChatLogView(chatUser: self.chatUser)
+                    ChatLogView(vm: chatLogViewModel)
                 }
             }
             .overlay(
@@ -175,6 +176,7 @@ struct MainMessagesView: View {
             LoginView(didCompleteLoginProcess: {
                 self.vm.isUserCurrentlyLoggedOut = false
                 self.vm.fetchCurrentUser()
+                self.vm.fetchRecentMessages()
             })
         }
     }
@@ -184,8 +186,17 @@ struct MainMessagesView: View {
         ScrollView {
             ForEach(vm.recentMessages) { recentMessage in
                 VStack {
-                    NavigationLink {
-                        Text("Destination")
+                    Button {
+                        let uid = FirebaseManager.shared.auth.currentUser?.uid == recentMessage.fromId ? recentMessage.toId : recentMessage.fromId
+                        self.chatUser = .init(data:
+                            [FirebaseConstants.email:
+                                recentMessage.email,
+                             FirebaseConstants.profileImageUrl:
+                                recentMessage.profileImageUrl,
+                             FirebaseConstants.uid: uid])
+                        self.chatLogViewModel.chatUser = self.chatUser
+                        self.chatLogViewModel.fetchMessages()
+                        self.shouldNavigateToChatLogView.toggle()
                     } label: {
                         HStack(spacing: 16) {
                             WebImage(url: URL(string: recentMessage.profileImageUrl))
@@ -209,8 +220,9 @@ struct MainMessagesView: View {
                             }
                             Spacer()
                             
-                            Text(recentMessage.timestamp.description)
+                            Text(recentMessage.timeAgo)
                                 .font(.system(size: 14, weight: .semibold))
+                                .foregroundColor(Color(.label))
                         }
                     }
                     Divider()
@@ -241,10 +253,12 @@ struct MainMessagesView: View {
         }
         // When .fullScreenCover is clicked a cover shows up
         .fullScreenCover(isPresented: $shouldShowNewMessageScreen) {
-            CreateNewMessageView(didSelectNewUser: { user
-                in print(user.email)
+            CreateNewMessageView(didSelectNewUser: { user in
+                print(user.email)
                 self.shouldNavigateToChatLogView.toggle()
                 self.chatUser = user
+                self.chatLogViewModel.chatUser = user
+                self.chatLogViewModel.fetchMessages()
             })
         }
     }

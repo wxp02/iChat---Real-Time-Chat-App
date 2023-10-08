@@ -99,6 +99,7 @@
 		CD5771692AA13252006111CF /* SwiftUIFirebaseChat */ = {
 			isa = PBXGroup;
 			children = (
+				CD7886742AA5580100AF4E93 /* MainMessagesView.swift */,
 				CDC994692AAEA3650051EEEB /* Model */,
 				CD0FD36C2AAD06ED001A62E8 /* Utils */,
 				CD7886732AA557EF00AF4E93 /* MainMessages */,
@@ -125,7 +126,6 @@
 			children = (
 				CD1A5FAD2AC23673002A7005 /* Chat */,
 				CDA70D902ABBEA3D0014361C /* NewMessage */,
-				CD7886742AA5580100AF4E93 /* MainMessagesView.swift */,
 			);
 			path = MainMessages;
 			sourceTree = "<group>";
